@@ -10,7 +10,6 @@ public class LinearEquationLogic {
 
 
     int num = 1;
-    String choice = "y";
 
 
     private void game(String p1, String p2) {
