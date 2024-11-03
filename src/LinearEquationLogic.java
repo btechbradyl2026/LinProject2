@@ -13,12 +13,12 @@ public class LinearEquationLogic {
 
 
     private void game(String p1, String p2) {
-        start(p1, p2);
+        welcome(p1, p2);
         System.out.println("Would you like to enter another pair of coordinates? y/n");
     }
 
 
-    public void start(String point1, String point2) {
+    public void welcome(String point1, String point2) {
         int x1;
         int y1;
         int x2;
@@ -58,7 +58,7 @@ public class LinearEquationLogic {
     }
 
 
-    public void welcome() {
+    public void start() {
         System.out.println("Welcome to the linear equation calculator");
         next();
     }

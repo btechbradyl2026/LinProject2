@@ -19,7 +19,7 @@ public class LinearEquation {
         return (double) Math.round(x * 100) /100;
     }
     public double slope() {
-        return changeY/changeX;
+        return rounder(changeY/changeX);
     }
 
     public double distance() {
@@ -39,35 +39,40 @@ public class LinearEquation {
     public String equation() {
         double yInt = yIntercept();
         String superSlope = "x";
-        String sign;
 
-
-        if (changeY % changeX == 0) {
-            superSlope = (int) (changeY / changeX) + superSlope;
+        if (changeY == 0) {
+            return "y = " + (int) yInt;
         } else {
-            if (changeY / changeX == 1) {
-                superSlope = superSlope;
-            } else if (changeY / changeX == -1) {
-                superSlope = "-x";
+                if (changeY > 0 && changeX > 0) {
+                superSlope = ((int)changeY) + "/" + ((int)changeX) + "x";
+                }
+                if (changeX < 0 || changeY < 0) {
+                    if (changeY < 0) {
+                        superSlope = "-" + ((int)changeY * -1) + "/" + ((int)changeX) + "x";
+                    }
+                    if (changeX < 0) {
+                        superSlope = "-" + ((int)changeY) + "/" + ((int)changeX * -1) + "x";
+                    }
+                } if (changeX < 0 && changeY < 0) {
+                    superSlope = ((int)changeY * -1) + "/" + ((int)changeX * -1) + "x";
+                } if (changeY % changeX == 0) {
+                    superSlope = (int)(changeY / changeX) + "x";
+                } if (changeY / changeX == 1) {
+                    superSlope = "x";
+                } if (changeY / changeX == -1) {
+                    superSlope = "-x";
+                }
+
+            if (yInt == 0) {
+                return "y = " + superSlope;
             }
-            if (changeX < 0 || changeY < 0) {
-                superSlope = "-" + changeY + "/" + changeX + "x";
+            if (yInt < 0) {
+                return  "y = " + superSlope + " - " + rounder(yInt * -1);
             }
-            if (changeX == 0 && changeY == 0) {
-                superSlope = "";
-            }
-            if (changeX < 0 && changeY < 0) {
-                superSlope = (changeY * -1) + "/" + (changeX * -1) + "x";
-            }
+            return "y = " + superSlope + " + " + rounder(yInt);
         }
-        if (yInt == 0) {
-            return superSlope;
-        }
-        if (yInt < 0) {
-            return superSlope + " - " + (yInt * -1);
-        }
-            return superSlope + " " + yInt;
     }
+
 
     public String coordinateForX(double x) {
         return "(" + x + ", " + (slope() * x + yIntercept()) + ")";
